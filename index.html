@@ -13,11 +13,14 @@
         <div>
             <h1>Global Agenda</h1>
         </div>
-        <div>
-            <button class="dropbtn">Culture</button>
-                <div>
-                <!--whatever needed to propogate different cultures' holidays-->
-                </div>
+        <!--Goal is to have holiday API propogate the corresponding holiday when country/culture from dropdown menu clicked-->
+        <div class="dropdown">
+            <button class="dropbtn" onclick="my.Function()">Country</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">US</a>
+              <a href="#">Romania</a>
+              <a href="#">Norway</a>
+            </div>
         </div>
     </header>
 <!--Agenda Body (two parts = calendar + task adder)-->
@@ -112,7 +115,7 @@
                             <h3>Day For Selected Task</h3>
                         </div>
                         <div>
-                            <button type="submit">Add Task</button>
+                            <button type="submit" onclick="my.Function()">Add Task</button>
                         </div>
                     </form>
                 </div>
@@ -122,8 +125,8 @@
                         <label for="task-edit"></label>
                         <input class="form-input" type="text" placeholder="Task Description" name:"task-edit" id="task-edit"/>
                         <ul>
-                            <button type="submit">Edit</button> 
-                            <button type="submit">Done</button>
+                            <button type="submit" onclick="my.Function()">Edit</button> 
+                            <button type="submit" onclick="my.Function()">Done</button>
                         </ul>
                     </form>
                 </div>
