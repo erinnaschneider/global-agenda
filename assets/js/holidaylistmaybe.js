@@ -22,14 +22,14 @@
 // }
 
 //show and hide dropdown list items on button click
-// function show_hide() {
-//     var click = document.getElementById("drop-down content");
-//     if(click.style.display ==="none") {
-//         click.style.display ="block";
-//     }else {
-//         click.style.display ="none";
-//     }
-// }
+function show_hide() {
+    var click = document.getElementById("drop-down content");
+    if(click.style.display ==="none") {
+        click.style.display ="block";
+    }else {
+        click.style.display ="none";
+    }
+}
 //https request for holidays on 11/25/2021 from Abstract API
   var day1 = document.getElementById("day25");
   var getHolidayNameus = function() {
@@ -39,19 +39,20 @@
   })
   .then(function (data) {
       console.log(data);
-
+//populate data!!!
+//1. create html element
 for (var i=0; i<data.length; i++){
     var day1El = document.createElement("p");
+    // 2.  give it content
     day1El.textContent = data[i].name
     day1El.setAttribute("class", "dayElements");
+    // 3. append to page
     day1.appendChild(day1El);
 
 }})}
 
-getHolidayName ();
+getHolidayNameus ();
 
 
-//populate data!!!
-//1. create html element
-// 2.  give it content
-// 3. append to page
+
+
