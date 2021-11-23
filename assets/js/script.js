@@ -55,76 +55,113 @@ for (let day = 1; day <= 31; day++) {
     calendar.insertAdjacentHTML("beforeend",`<div class="day ${weekend ? "weekend" : ""}">${name}${day}</div>`);
 };
 
+//// ------------- Rylee's javascript ------------------ ///
+
 //get modal
 var modal = document.getElementById('taskBarModal');
-//get open/close modal btn
 var openModalBtn = document.getElementById('addTaskBtn');
 var closeModalBtn = document.getElementById('exitTaskBtn');
-//save task
 var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
-var tasksBodySection = document.getElementById('taskBarBodySection');
-var deleteTask = document.querySelector('#deleteBtn');
+var tasksBodySection = document.querySelector('#taskBarBodySection');
+
 
 //open modal on click
 openModalBtn.onclick = function(){
     modal.style.display = "block";
-}
+};
 
 //close modal on click
 closeModalBtn.onclick = function(){
     modal.style.display = "none";
-}
+};
 
-function deleteATask(taskID){
-    var taskSelected = document.querySelector("#newTaskItem[task-id='" + taskID + "']");
-    taskSelected.remove();
-}
-
-var taskIdCounter = 0;
 //save task description into div section and display
+var taskIdCounter = 0;
 saveTaskBtn.onclick = function(){
 
     //create new task div element
     var newDivElement = document.createElement('div');
-    //add class to div
-    newDivElement.classList = "newTask";
-    //add unique task id
-    newDivElement.setAttribute("task-id", taskIdCounter);
-    newDivElement.setAttribute("id", 'newTaskItem');
+    newDivElement.classList = "newTask";//add class to div
+    newDivElement.setAttribute("data-taskId", taskIdCounter);//add unique task id
+    
 
     //create new p element
     var newPElement = document.createElement('p');
-    newPElement = taskText.value;
+    newPElement.innerHTML = taskText.value;
    
     //create new delete button
     var newDeleteBtn = document.createElement('button');
-    //add id too delete button
-    newDeleteBtn.setAttribute('id','deleteBtn');
-    newDeleteBtn.setAttribute("task-id", taskIdCounter);
-    newDeleteBtn.innerHTML = "Delete";
-    //add icon
+    newDeleteBtn.classList = 'deleteBtn'; //add classes too delete button
+    newDeleteBtn.setAttribute("data-taskId", taskIdCounter); //add id counter
+    var iconTrash = document.createElement('i'); //create trash icon element
+    iconTrash.classList = 'fa fa-trash'; //add class to icon element
+    newDeleteBtn.append(iconTrash);
 
     //create new complete button
-    var newCompleteBtn = document.createElement('button');
-    //add id to complete button
-    newCompleteBtn.setAttribute('id','completeBtn');
-    newCompleteBtn.setAttribute("task-id", taskIdCounter);
-    newCompleteBtn.innerHTML = "Complete";
-    //add icon
+    var newCompleteBtn = document.createElement('select');
+    newCompleteBtn.classList = 'selectStatus'; //add classes to complete button
+    newCompleteBtn.setAttribute('name','statusChange');
+    newCompleteBtn.setAttribute("data-taskId", taskIdCounter);
+    
+    var statusChoices = ['To Do', 'In Progess', 'Completed'];
+    for(var i=0; i<statusChoices.length; i++){
+        var optionsElement = document.createElement('option');
+        optionsElement.textContent = statusChoices[i];
+        optionsElement.setAttribute('value', statusChoices[i]);
 
-    // add p element child too div
+        newCompleteBtn.appendChild(optionsElement);
+    }
+
+    //append to new div element
     newDivElement.append(newPElement);
     newDivElement.append(newDeleteBtn);
     newDivElement.append(newCompleteBtn);
-
+    //append to task body section
     tasksBodySection.append(newDivElement);
 
     //close modal window
     modal.style.display = "none";
-    //clear textarea
+    //clear textarea 
     taskText.value = "";
 
     //increate task counter for next unique id
     taskIdCounter ++;
+
+};
+
+// add eventlistener to parent task body section incase tasks weren't created yet
+var taskBodyListener = document.querySelector('#taskBarBodySection');
+taskBodyListener.addEventListener("click", taskButtonHandler);
+
+//find the data-taskid of the function that was clicked on
+function taskButtonHandler (event){
+    var taskId = event.target.getAttribute('data-taskId'); //get elements task id
+    if(event.target.matches('.deleteBtn')){
+        deleteTask(taskId);//send to delete function
+    }
+    if(event.target.matches('.selectStatus')){
+        var optionsValue = event.target.value;
+        taskStatus(taskId, optionsValue);//send to delete function
+    }
+};
+
+function taskStatus(taskId, optionsValue){
+    var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
+    if(optionsValue == 'To Do'){
+        taskSeleted.setAttribute('style','background-color: lightgrey');
+    }
+    if(optionsValue == 'In Progess'){
+        taskSeleted.setAttribute('style','background-color: lightyellow');
+    }
+    if(optionsValue == 'Completed'){
+        taskSeleted.setAttribute('style','background-color: lightgreen');
+    }
 }
+
+//delete task with matched id
+function deleteTask(taskId){
+    var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
+    taskSeleted.remove();
+}
+//// ------------- End of Rylee's javascript ------------------ ///
