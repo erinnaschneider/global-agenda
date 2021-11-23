@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Agenda</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
 <!--Agenda Header-->
@@ -15,14 +14,21 @@
             <h1>Global Agenda</h1>
         </div>
         <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
-        <div class="dropdown-menu" id = "dropdown-menu" role = "menu">
-            <div class = "dropdown-content"></div>
-            <a href ="#" class = "dropdown-item">United States</a>
-            <a class = "dropdown-item"></a>
-            <a href ="#">Mexico</a>
-            <a href ="#">China</a>
+        <div class="dropdown holiday content">
+
+            <div class="dropdown inline-block relative">
+              <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                <span class="mr-1">Dropdown</span>
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+              </button>
+              <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                <li class=""><a class="rounded-t bg-white-200 hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap" href="#">United States</a></li>
+                <li class=""><a class="bg-green-200 hover:bg-red-400 py-2 px-4 block whitespace-no-wrap" href="#">Mexico</a></li>
+                <li class=""><a class="rounded-b bg-red-200 hover:bg-yellow-400 py-2 px-4 block whitespace-no-wrap" href="#">China</a></li>
+              </ul>
             </div>
-        </div>
+          
+          </div>
     </header>
 <!--Agenda Body (two parts = calendar + task adder)-->
     <main>
