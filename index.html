@@ -11,63 +11,75 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
-<body>
-<!--Agenda Header-->
-    <header>
-        <div>
-            <h1>Global Agenda</h1>
-        </div>
-        <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
-        <div class="dropdown">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-ui-actions" onclick="my.Function()">
-                <span>Country</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
+<body class="p-1 m-1 is-family-monospace has-background-info-light has-text-grey">
+<!--Agenda Header/Navigation Bar-->
+    <nav class="navbar has-shadow has-background-link-light is-mobile is-flex-direction-row">
+        <header class="container level is-mobile">
+            <div class="navbar-brand is-mobile is-flex-direction-row">
+                <a class="navbar-item">
+                    <img src=assets\global-agenda-calendar.png alt="global agenda logo" style="max-height: 70px">
+                </a>
             </div>
-            <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
-              <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
-                  United States
-                </a>
-                <a href="#" class="dropdown-item">
-                  Mexico
-                </a>
-                <a href="#" class="dropdown-item">
-                  Canada
-                </a>
-                <a href="#" class="dropdown-item">
-                  Singapore
-                </a>
-                <a href="#" class="dropdown-item">
-                  India
-                </a>
-              </div>
+            <div class="is-mobile is-flex-direction-row">
+                <h1 class="is-size-1 has-centered-text p-1">Global Agenda</h1>
             </div>
-          </div>
-
-    </header>
+            <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
+        
+            <div class="dropdown p-1 m-1">
+                <div class="dropdown-trigger p-1">
+                    <button class="button is-info is-light is-medium is-active button-text-hover-background-color" aria-haspopup="true"
+                        aria-controls="dropdown-ui-actions" onclick="my.Function()">
+                        <span>Country</span>
+                        <span class="icon is-large">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu is-link is-light is-active" id="dropdown-ui-actions" role="menu">
+                    <div class="dropdown-content is-link">
+                        <a href="#" class="dropdown-item">
+                            United States
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Mexico
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Canada
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Singapore
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            India
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+    </nav>
 <!--Agenda Body (two parts = calendar + task adder)-->
-    <main>
+    <main class="container">
         <!--Calendar Body-->
             <section>
                 <!--Calendar header-->
-                    <div class="columns">
+                <div class="container is-mobile level b-1 m-1 p-3">
+                    <div class="container columns is-vcentered is-mobile">
                         
-                            <div class="column">Previous Month</div>
-                            <div class="column">Current Month</div>
-                            <div class="column">Next Month</div>
-                            <div class="column">Year</div>
+                            <div class="column is-mobile is-vcentered">Previous Month</div>
+                            <div class="column is-mobile is-vcentered">Current Month</div>
+                            <div class="column is mobile is-vcentered">Next Month</div>
+                            <div class="column is mobile is-vcentered">Year</div>
                            
                     </div>
+
+                </div>
                 <!--Calendar table-->
-                <div id="calendarDiv">
+                <div id="calendarDiv" class="p-2">
                    
                     </div>
             <!---- Rylee's task bar modal section --->
-            <section id="taskBarModal">
+            <section id="taskBarModal" class="level">
                 <div id="modalDescription">New Task:</div>
                 <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
                 <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
@@ -75,10 +87,11 @@
             </section>
 
             <!--- Rylee's Task section --->
-            <section id="taskBarSection">
+            <section id="taskBarSection" class="level">
                 <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
-                    <div id="daySelected" value='23'>Day: 23</div>
-                    <button class="button is-link" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+
+                    <div id="daySelected" class="p-1 m-1 b-1">Current Day</div>
+                    <button class="button is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
                 </div>
                 <div id="taskBarBodySection"></div>
             </section>
