@@ -49,36 +49,25 @@
                 <div id="calendarDiv">
                    
                     </div>
-        <!--Task adder-->
-            <section>
-                <!--add-task form-->
-                <div>
-                    <form>
-                        <div>
-                            <h3>Day For Selected Task</h3>
-                        </div>
-                        <div>
-                            <button type="submit" onclick="my.Function()">Add Task</button>
-                        </div>
-                    </form>
+            <!--Rylees task bar modal section-->
+            <section id="taskBarModal">
+                <div id="modalDescription">New Task:</div>
+                <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
+                <button id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
+                <button id="exitTaskBtn"><i class="fa fa-close"></i></button>
+            </section>
+
+            <!--Task adder-->
+            <section id="taskBarSection">
+                <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
+                    <div id="daySelected">Current Day</div>
+                    <button id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
                 </div>
-                <!--task description editor-->
-                <div>
-                    <form>
-                        <label for="task-edit"></label>
-                        <input class="form-input" type="text" placeholder="Task Description" name:"task-edit" id="task-edit"/>
-                        <ul>
-                            <button type="submit" onclick="my.Function()">Edit</button> 
-                            <button type="submit" onclick="my.Function()">Done</button>
-                        </ul>
-                    </form>
+                <div id="taskBarBodySection">
+                    <!-- add new div
+                            within div add task description delete button(with icon) and done button ( with icon) -->
+                    <!-- add holiday announcement if there is any for this date -->
                 </div>
-                <!--Holiday Announcement-->
-                <div>
-                    <h3>Holiday Announcement</h3>
-                </div>
-                <!--HTML needed to make announcement block-->
-                <div></div>
             </section>
     </main>
     
