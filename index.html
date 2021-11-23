@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Agenda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Add icon body -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
@@ -32,37 +33,32 @@
         <!--Calendar Body-->
             <section>
                 <!--Calendar header-->
-                <div>
-                    <div>
-                        <ul>
-                            <li>Previous Month</li>
-                            <li>Current Month</li>
-                            <li>Next Month</li>
-                        </ul>    
+                    <div class="columns">
+                        
+                            <div class="column">Previous Month</div>
+                            <div class="column">Current Month</div>
+                            <div class="column">Next Month</div>
+                            <div class="column">Year</div>
+                           
                     </div>
-                    <div>
-                        <ul>
-                            <li>Year</li>
-                        </ul>    
-                    </div>
-                </div>
                 <!--Calendar table-->
                 <div id="calendarDiv">
                    
                     </div>
             <!--Rylees task bar modal section-->
             <section id="taskBarModal">
-                <div id="modalDescription">New Task:</div>
+                <div id="modalDescription">New Task:
                 <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
-                <button id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
-                <button id="exitTaskBtn"><i class="fa fa-close"></i></button>
+                <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
+                <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
+                </div>
             </section>
 
             <!--Task adder-->
             <section id="taskBarSection">
                 <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
                     <div id="daySelected">Current Day</div>
-                    <button id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+                    <button id="addTaskBtn" class="button is-link"><i class="fa fa-plus"> Task </i></button>
                 </div>
                 <div id="taskBarBodySection">
                     <!-- add new div
