@@ -17,6 +17,7 @@
     border: 1px solid black;
 }
 
+/*---------Rylee's css section --------*/
 #taskBarModal {
     display: none;
     position: fixed;
@@ -50,12 +51,6 @@ textarea {
     margin: 10px 10% 10px 10%;
 }
 
-button{
-    width: 100px;
-    height: auto;
-    font-size: 16px;
-}
-
 #saveNewTaskBtn {
     margin: 10px 10px 10px 10%;
 }
@@ -70,3 +65,12 @@ button{
     border-radius: 4px;
     margin: 10px;
 }
+
+.selectStatus{
+    border: 1px solid black;
+    width: 110px;
+    height: auto;
+    font-size: 16px;
+}
+
+/*---------Rylee's css section --------*/
