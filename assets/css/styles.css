@@ -1,4 +1,72 @@
 /*! @import */
 @tailwind base;
 @tailwind components;
+
 @tailwind utilities;
+
+#calendarDiv {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 100%;
+    padding: 1px;
+    background-color: #eee;
+}
+
+.day {
+    border: 1px solid black;
+}
+
+#taskBarModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 20%;
+    top: 25%;
+    border-radius: 4px;
+    background-color: lightgray;
+    color: black;
+    height: 50%;
+    width: 60%;
+    align-items: center;
+}
+
+#modalDescription {
+    font-size: 30px;
+    font-weight: 400;
+    color: darkblue;
+    padding: 10px;
+    margin: 10px 10% 10px 10%;
+}
+
+textarea {
+    width: 80%;
+    height: 50%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    padding: 20px;
+    margin: 10px 10% 10px 10%;
+}
+
+button{
+    width: 100px;
+    height: auto;
+    font-size: 16px;
+}
+
+#saveNewTaskBtn {
+    margin: 10px 10px 10px 10%;
+}
+
+#exitTaskBtn {
+    margin: 10px;
+}
+
+.newTask {
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 4px;
+    margin: 10px;
+}

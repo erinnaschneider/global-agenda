@@ -5,21 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Agenda</title>
-    <link rel="stylesheet" href="assets\css\styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Add icon body -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
 <!--Agenda Header-->
     <header>
-        <div class="bg-blue-700">
+        <div>
             <h1>Global Agenda</h1>
         </div>
-        <!--Goal is to have holiday API propogate the corresponding holiday when country/culture from dropdown menu clicked-->
+        <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
         <div class="dropdown">
             <button class="dropbtn" onclick="my.Function()">Country</button>
             <div id="myDropdown" class="dropdown-content">
               <a href="#">US</a>
-              <a href="#">Romania</a>
-              <a href="#">Norway</a>
+              <a href="#">MX</a>
+              <a href="#">CA</a>
+              <a href="#">SI</a>
+              <a href="#">IN</a>
             </div>
         </div>
     </header>
@@ -28,117 +33,45 @@
         <!--Calendar Body-->
             <section>
                 <!--Calendar header-->
-                <div>
-                    <div>
-                        <ul>
-                            <li>Previous Month</li>
-                            <li>Current Month</li>
-                            <li>Next Month</li>
-                        </ul>    
+                    <div class="columns">
+                        
+                            <div class="column">Previous Month</div>
+                            <div class="column">Current Month</div>
+                            <div class="column">Next Month</div>
+                            <div class="column">Year</div>
+                           
                     </div>
-                    <div>
-                        <ul>
-                            <li>Year</li>
-                        </ul>    
-                    </div>
-                </div>
                 <!--Calendar table-->
-                <div>
-                    <div>
-                        <table>
-                            <tr>
-                                <th>Sunday</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                                <th>Friday</th>
-                                <th>Saturday</th>
-                            </tr>
-                        </table>
+                <div id="calendarDiv">
+                   
                     </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td>15</td>
-                                <td>16</td>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>21</td>
-                                <td>22</td>
-                                <td>23</td>
-                                <td>24</td>
-                                <td>25</td>
-                                <td>26</td>
-                                <td>27</td>
-                            </tr>
-                            <tr>
-                                <td>28</td>
-                                <td>29</td>
-                                <td>30</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>  
-                    </div>
-        <!--Task adder-->
-            <section>
-                <!--add-task form-->
-                <div>
-                    <form>
-                        <div>
-                            <h3>Day For Selected Task</h3>
-                        </div>
-                        <div>
-                            <button type="submit" onclick="my.Function()">Add Task</button>
-                        </div>
-                    </form>
+            <!--Rylees task bar modal section-->
+            <section id="taskBarModal">
+                <div id="modalDescription">New Task:
+                <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
+                <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
+                <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
                 </div>
-                <!--task description editor-->
-                <div>
-                    <form>
-                        <label for="task-edit"></label>
-                        <input class="form-input" type="text" placeholder="Task Description" name:"task-edit" id="task-edit"/>
-                        <ul>
-                            <button type="submit" onclick="my.Function()">Edit</button> 
-                            <button type="submit" onclick="my.Function()">Done</button>
-                        </ul>
-                    </form>
+            </section>
+
+            <!--Task adder-->
+            <section id="taskBarSection">
+                <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
+                    <div id="daySelected">Current Day</div>
+                    <button id="addTaskBtn" class="button is-link"><i class="fa fa-plus"> Task </i></button>
                 </div>
-                <!--Holiday Announcement-->
-                <div>
-                    <h3>Holiday Announcement</h3>
+                <div id="taskBarBodySection">
+                    <!-- add new div
+                            within div add task description delete button(with icon) and done button ( with icon) -->
+                    <!-- add holiday announcement if there is any for this date -->
                 </div>
-                <!--HTML needed to make announcement block-->
-                <div></div>
             </section>
     </main>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/utc.min.js" integrity="sha512-TU4ndEYOqql+pMXn14M8RDWsjjD+VPUA2RoWSuuFd+blPJW4oLrL1w1zAGdlrk4jsE2FEBH5CU3+fmogVYEqIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/timezone.min.js" integrity="sha512-72V2JNSAxd3rsQIpDSAbCTQXD6gi91Cd/IFZ6NYwRjZSiIlIJfDrJLXq+UomWstOg+zGHWFfkTDl3APEUMoqlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/script.js"></script>
+<script src="./assets/js/holidaylistmaybe.js"></script>
 </body>
 </html>
