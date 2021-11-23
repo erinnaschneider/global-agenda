@@ -1,6 +1,34 @@
 // Get all dropdowns on the page that aren't hoverable.
 const dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
+let apiKey = "425bdf6a-8b68-43b2-a67b-5c2fbbd0986d";
 
+
+// fetching weather based on ip address
+function getWeatherData(){
+  fetch(`https://api.airvisual.com/v2/nearest_city?key=${apiKey}`).then(function(data){
+return data.json()
+  }).then(function(res){
+    var data = res.data;
+//console.log(res)
+  renderCurrentWeather(data.city, data.current.weather)
+  })
+  
+};
+
+function renderCurrentWeather(city, weather){
+  //var date = dayjs().tz(timezone).format('M/D/YYYY');
+  let temperature = weather.tp;
+  let humidity = weather.hu;
+  let windSpeed = weather.ws;
+  let icon = weather.ic;
+  //city date/temp/humid/windspeed/uv
+  console.log(weather);
+
+};
+
+getWeatherData();
+
+// to get the dropdown click to respond
 if (dropdowns.length > 0) {
   // For each dropdown, add event handler to open on click.
   dropdowns.forEach(function(el) {
