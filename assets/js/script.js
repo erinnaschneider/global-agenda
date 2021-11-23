@@ -33,12 +33,24 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
+var calendarArray = []; //Rylee's code ------ calendar create an array[] for days in calendar -----
+
 let calendar = document.getElementById("calendarDiv");
 let theWeekend = day => {
     return day === 6;
 }
 
 for (let day = 1; day <= 31; day++) {
+  
+  //Rylee's code ------ add days to calendarArray[]-----
+  var calendarDay = { //add all items that will be stored to local storage for each day
+    date: day,
+    task: [],
+    holiday: [],
+    weather: [],
+  };
+  calendarArray.push(calendarDay); // add those to the calendar array
+  //Rylee's code ------ End -----
     
     let date = new Date(2021, 10, day);
     let options = { weekday: "short"};
@@ -57,6 +69,31 @@ for (let day = 1; day <= 31; day++) {
 
 //// ------------- Rylee's javascript ------------------ ///
 
+// load task from local storage function()
+function loadTaskFromStorage(){
+  var calendarFromStorage = JSON.parse(localStorage.getItem('calendarDay')); //uploads local storage calendat
+  if(calendarFromStorage == null){ // if it returns none
+    localStorage.setItem('calendarDay', JSON.stringify(calendarArray)); //sets local storage to calendar made
+  }
+  else{ // if it's not empty
+    calendarArray = []; //remove objects stored in calendar when calendar was made
+    calendarArray.push(calendarFromStorage); //upload the array with local storage array
+  }
+}
+
+loadTaskFromStorage();
+  // if task from local storage isn't empty then append into calendar array
+
+// add eventlistener to calendar div
+  //get the calendar day selected
+  //display the calendar day in daySelected div and update value
+
+  //search through array until date == date:day
+  // if match display all the task saved in that section
+    // create divs and display in that section
+  // if holiday isn't empty display holiday
+  // if weather isn't empty display weather
+
 //get modal
 var modal = document.getElementById('taskBarModal');
 var openModalBtn = document.getElementById('addTaskBtn');
@@ -64,7 +101,7 @@ var closeModalBtn = document.getElementById('exitTaskBtn');
 var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
 var tasksBodySection = document.querySelector('#taskBarBodySection');
-
+var currentDaySelected = document.querySelector('#daySelected');
 
 //open modal on click
 openModalBtn.onclick = function(){
@@ -119,6 +156,13 @@ saveTaskBtn.onclick = function(){
     newDivElement.append(newCompleteBtn);
     //append to task body section
     tasksBodySection.append(newDivElement);
+  
+    //store new task into the array for the specific date in task section
+    for(i=0; i<calendarArray.length; i++){
+      if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
+        calendarArray[i].task.push(newDivElement);
+      }
+    };
 
     //close modal window
     modal.style.display = "none";
