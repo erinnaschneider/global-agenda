@@ -7,7 +7,8 @@
     <title>Global Agenda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Add icon body -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
@@ -18,15 +19,35 @@
         </div>
         <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
         <div class="dropdown">
-            <button class="dropbtn" onclick="my.Function()">Country</button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#">US</a>
-              <a href="#">MX</a>
-              <a href="#">CA</a>
-              <a href="#">SI</a>
-              <a href="#">IN</a>
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-ui-actions" onclick="my.Function()">
+                <span>Country</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
             </div>
-        </div>
+            <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">
+                  United States
+                </a>
+                <a href="#" class="dropdown-item">
+                  Mexico
+                </a>
+                <a href="#" class="dropdown-item">
+                  Canada
+                </a>
+                <a href="#" class="dropdown-item">
+                  Singapore
+                </a>
+                <a href="#" class="dropdown-item">
+                  India
+                </a>
+              </div>
+            </div>
+          </div>
+
     </header>
 <!--Agenda Body (two parts = calendar + task adder)-->
     <main>
