@@ -4,9 +4,19 @@
 
 @tailwind utilities;
 
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 #calendarDiv {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
     height: 100%;
+    padding: 1px;
+    background-color: #eee;
+}
+
+.day {
+    border: 1px solid black;
 }

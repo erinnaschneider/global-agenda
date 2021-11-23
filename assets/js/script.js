@@ -11,7 +11,7 @@ for (let day = 1; day <= 31; day++) {
 
     if (day <= 7) {
         let dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()]
-        name = `<div class="name">${dayName}</div>`
+        name = `<p class="name">${dayName}</p>`
         console.log(date.getDay());
     }
 
