@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
-<body class="p-1 m-1 is-family-monospace has-background-info-light has-text-grey is-mobile">
+<body class="p-1 is-family-monospace has-background-info-light has-text-grey is-mobile">
 <!--Agenda Header/Navigation Bar-->
     <nav class="navbar has-shadow has-background-link-light is-mobile is-flex-direction-row">
         <header class="container level is-mobile">
@@ -20,14 +20,14 @@
                     <img src=assets\global-agenda-calendar.png alt="global agenda logo" style="max-height: 70px">
                 </a>
             </div>
-            <div class="is-mobile is-flex-direction-row">
-                <h1 class="is-size-1 is-mobile has-centered-text p-1">Global Agenda</h1>
+            <div class="is-mobile">
+                <h1 class="is-size-1 is-mobile is-justify-content-center p-1">Global Agenda</h1>
             </div>
             <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
         
-            <div class="dropdown p-1 m-1">
-                <div class="dropdown-trigger p-1">
-                    <button class="button is-info is-light is-medium is-active button-text-hover-background-color" aria-haspopup="true"
+            <div class="dropdown p-1 m-1 is-mobile">
+                <div class="dropdown-trigger p-1 is-mobile">
+                    <button class="button is-info is-light is-medium is-active button-text-hover-background-color is-mobile" aria-haspopup="true"
                         aria-controls="dropdown-ui-actions" onclick="my.Function()">
                         <span>Country</span>
                         <span class="icon is-large">
@@ -35,8 +35,8 @@
                         </span>
                     </button>
                 </div>
-                <div class="dropdown-menu is-link is-light is-active" id="dropdown-ui-actions" role="menu">
-                    <div class="dropdown-content is-link">
+                <div class="dropdown-menu is-link is-light is-active is-mobile" id="dropdown-ui-actions" role="menu">
+                    <div class="dropdown-content is-link is-mobile">
                         <a href="#" class="dropdown-item">
                             United States
                         </a>
@@ -61,39 +61,41 @@
 <!--Agenda Body (two parts = calendar + task adder)-->
     <main class="container is-mobile">
         <!--Calendar Body-->
-            <section>
+            <section class="is-mobile">
                 <!--Calendar header-->
-                <div class="container is-mobile">
-                    <h2 class="is-mobile level b-1 m-2 subtitle has-centered-text is-size-3 is-grey p-5 m-2 align-self">November 2021</h2>
+                <div id="month-contain" class="container is-mobile">
+                    <h2 id="month" class="is-mobile level subtitle is-size-3 is-grey p-5 m-2 is-justify-content-center">November 2021</h2>
                 </div>
 
                 <!--Calendar table (partially styled with bulma and vanilla css)-->
-                <div id="calendarDiv" class="p-2 has-background-info-light is-mobile mb-2"></div>
+                <div id="calendarDiv" class="p-2 has-background-info-light is-mobile mb-2 "></div>
 
 
             <!---- Rylee's task bar modal section --->
             <section id="taskBarModal" class="is-level is-mobile"> 
-                <div id="modalDescription" class="is-link">New Task:</div>
-                <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
-                <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
-                <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
+                <div id="modalDescription" class="is-link is-mobile">New Task:</div>
+                <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Enter a task .." class="is-mobile"></textarea>
+                <button class="button is-link is-mobile" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
+                <button class="button is-link is-mobile" id="exitTaskBtn"><i class="fa fa-close"></i></button>
             </section>
 
             <!--- Rylee's Task section --->
-            <section id="taskBarSection" class="level">
-                <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
-                    <div id='weatherSection'>
-                        <h1>Today's Weather in Your Area</h1>
+            <section id="taskBarSection" class="level is-mobile">
+                <div id="taskBarHeaderSection" class="is-mobile"> <!-- day selected and button need to be next to in a row -->
+                    <div id='weatherSection' class="is-mobile">
+                        <h1 class="subtitle is-mobile">Today's Weather in Your Area</h1>
                     </div>
                 </div>
-                <div style="min-width: 70%;">
-                    <div id="daySelected" value='23'></div>
+                <div style="min-width: 70%;" class= "mt-5 is-mobile">
+                    <div id="daySelected" class="subtitle is-mobile is-vcentered" value='23'></div>
                     <button class="button is-mobile is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
-                    <div id="taskBarBodySection"></div>
+                    <div id="taskBarBodySection" class="is-mobile"></div>
                 </div>
             </section>
             <!--- End of Rylee's Task section --->
-    </main>
+    </main class="">
+    &nbsp;
+    &nbsp;
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/utc.min.js" integrity="sha512-TU4ndEYOqql+pMXn14M8RDWsjjD+VPUA2RoWSuuFd+blPJW4oLrL1w1zAGdlrk4jsE2FEBH5CU3+fmogVYEqIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

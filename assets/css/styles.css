@@ -11,6 +11,7 @@
     width: 100%;
     padding: 1px;
     background-color: clear;
+    border-bottom: 1px solid grey;
 }
 
 .day {
@@ -20,7 +21,7 @@
 
 /*---------Rylee's css section --------*/
 .day:hover{
-    background-color: mediumaquamarine;
+    background-color: Moccasin;
     cursor: pointer;
 }
 
@@ -31,7 +32,7 @@
     left: 20%;
     top: 25%;
     border-radius: 4px;
-    background-color: lightgray;
+    background-color: lightgrey;
     color: black;
     height: auto;
     width: 60%;
@@ -41,7 +42,7 @@
 #modalDescription {
     font-size: 30px;
     font-weight: 400;
-    color: darkblue;
+    color: darkslategrey;
     padding: 10px;
     margin: 10px 10% 10px 10%;
 }
@@ -66,8 +67,8 @@ textarea {
 }
 
 .newTask {
-    padding: 20px;
-    background-color: lightgray;
+    padding: 40px;
+    border: 1px solid darkslategrey;
     border-radius: 4px;
     margin: 10px;
 }
@@ -81,7 +82,13 @@ textarea {
 
 /*---------Rylee's css section End --------*/
 
-/*----Safia css----*/
+/*Month heading style*/
+#month {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color: lightgrey;
+}
+
 html {
     margin: 0px;
     height: 100%;
@@ -89,10 +96,11 @@ html {
 }
 
 body {
-    margin: 0px;
+    margin-bottom: 0px;
     min-height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
