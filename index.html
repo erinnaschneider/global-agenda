@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
-<body class="p-1 m-1 is-family-monospace has-background-info-light has-text-grey">
+<body class="p-1 m-1 is-family-monospace has-background-info-light has-text-grey is-mobile">
 <!--Agenda Header/Navigation Bar-->
     <nav class="navbar has-shadow has-background-link-light is-mobile is-flex-direction-row">
         <header class="container level is-mobile">
@@ -21,7 +21,7 @@
                 </a>
             </div>
             <div class="is-mobile is-flex-direction-row">
-                <h1 class="is-size-1 has-centered-text p-1">Global Agenda</h1>
+                <h1 class="is-size-1 is-mobile has-centered-text p-1">Global Agenda</h1>
             </div>
             <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
         
@@ -59,23 +59,21 @@
         </header>
     </nav>
 <!--Agenda Body (two parts = calendar + task adder)-->
-    <main class="container">
+    <main class="container is-mobile">
         <!--Calendar Body-->
             <section>
                 <!--Calendar header-->
-                <div class="container is-mobile level b-1 m-1 p-3">
-                    <div class="container columns is-vcentered is-mobile">
-                            <div class="column is-mobile is-vcentered">November 2021</div> <!-- Import calendar month -->
-                    </div>
+                <div class="container is-mobile">
+                    <h2 class="is-mobile level b-1 m-2 subtitle has-centered-text is-size-3 is-grey p-5 m-2 align-self">November 2021</h2>
                 </div>
 
-                <!--Calendar table-->
-                <div id="calendarDiv" class="p-2"></div>
+                <!--Calendar table (partially styled with bulma and vanilla css)-->
+                <div id="calendarDiv" class="p-2 has-background-info-light is-mobile mb-2"></div>
 
 
             <!---- Rylee's task bar modal section --->
-            <section id="taskBarModal">
-                <div id="modalDescription">New Task:</div>
+            <section id="taskBarModal" class="is-level is-mobile"> 
+                <div id="modalDescription" class="is-link">New Task:</div>
                 <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
                 <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
                 <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
@@ -89,8 +87,8 @@
                     </div>
                 </div>
                 <div style="min-width: 70%;">
-                    <div id="daySelected" class="p-1 m-1 b-1" value='23'></div>
-                    <button class="button is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+                    <div id="daySelected" value='23'></div>
+                    <button class="button is-mobile is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
                     <div id="taskBarBodySection"></div>
                 </div>
             </section>

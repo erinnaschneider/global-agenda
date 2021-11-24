@@ -1,7 +1,6 @@
 /*! @import */
 @tailwind base;
 @tailwind components;
-
 @tailwind utilities;
 
 #calendarDiv {
@@ -15,8 +14,8 @@
 }
 
 .day {
-    border: 1px solid grey;
-    font: strong;
+    border: clear;
+    font-weight: strong;
 }
 
 /*---------Rylee's css section --------*/
