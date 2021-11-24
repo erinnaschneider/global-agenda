@@ -5,140 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Agenda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Add icon body -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
-<body>
-<!--Agenda Header-->
-    <header>
-        <div">
-            <h1>Global Agenda</h1>
-        </div>
-        <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
-        <div class="dropdown-menu" id = "dropdown-menu" role = "menu">
-            <div class = "dropdown-content"></div>
-            <a href ="#" class = "dropdown-item">United States</a>
-            <a class = "dropdown-item"></a>
-            <a href ="#">Mexico</a>
-            <a href ="#">China</a>
+<body class="p-1 m-1 is-family-monospace has-background-info-light has-text-grey">
+<!--Agenda Header/Navigation Bar-->
+    <nav class="navbar has-shadow has-background-link-light is-mobile is-flex-direction-row">
+        <header class="container level is-mobile">
+            <div class="navbar-brand is-mobile is-flex-direction-row">
+                <a class="navbar-item">
+                    <img src=assets\global-agenda-calendar.png alt="global agenda logo" style="max-height: 70px">
+                </a>
             </div>
-        </div>
-    </header>
+            <div class="is-mobile is-flex-direction-row">
+                <h1 class="is-size-1 has-centered-text p-1">Global Agenda</h1>
+            </div>
+            <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
+        
+            <div class="dropdown p-1 m-1">
+                <div class="dropdown-trigger p-1">
+                    <button class="button is-info is-light is-medium is-active button-text-hover-background-color" aria-haspopup="true"
+                        aria-controls="dropdown-ui-actions" onclick="my.Function()">
+                        <span>Country</span>
+                        <span class="icon is-large">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu is-link is-light is-active" id="dropdown-ui-actions" role="menu">
+                    <div class="dropdown-content is-link">
+                        <a href="#" class="dropdown-item">
+                            United States
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Mexico
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Canada
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Singapore
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            India
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+    </nav>
 <!--Agenda Body (two parts = calendar + task adder)-->
-    <main>
+    <main class="container">
         <!--Calendar Body-->
             <section>
                 <!--Calendar header-->
-                <div>
-                    <div>
-                        <ul>
-                            <li>Previous Month</li>
-                            <li>Current Month</li>
-                            <li>Next Month</li>
-                        </ul>    
+                <div class="container is-mobile level b-1 m-1 p-3">
+                    <div class="container columns is-vcentered is-mobile">
+                        
+                            <div class="column is-mobile is-vcentered">Previous Month</div>
+                            <div class="column is-mobile is-vcentered">Current Month</div>
+                            <div class="column is mobile is-vcentered">Next Month</div>
+                            <div class="column is mobile is-vcentered">Year</div>
+                           
                     </div>
-                    <div>
-                        <ul>
-                            <li>Year</li>
-                        </ul>    
-                    </div>
+
                 </div>
                 <!--Calendar table-->
-                <div>
-                    <div>
-                        <table>
-                            <tr>
-                                <th>Sunday</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                                <th>Friday</th>
-                                <th>Saturday</th>
-                            </tr>
-                        </table>
+                <div id="calendarDiv" class="p-2">
+                   
                     </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <td></td>
-                                <td id = "day1" class = "days">1</td>
-                                <td id = "day2" class = "days">2</td>
-                                <td id = "day3" class = "days">3</td>
-                                <td id = "day4" class = "days">4</td>
-                                <td id = "day5" class = "days">5</td>
-                                <td id = "day6" class = "days">6</td>
-                            </tr>
-                            <tr>
-                                <td id = "day7" class = "days">7</td>
-                                <td id = "day8" class = "days">8</td>
-                                <td id = "day9" class = "days">9</td>
-                                <td id = "day10" class = "days">10</td>
-                                <td id = "day11" class = "days">11</td>
-                                <td id = "day12" class = "days">12</td>
-                                <td id = "day13" class = "days">13</td>
-                            </tr>
-                            <tr>
-                                <td id = "day14" class = "days">14</td>
-                                <td id = "day15" class = "days">15</td>
-                                <td id = "day16" class = "days">16</td>
-                                <td id = "day17" class = "days">17</td>
-                                <td id = "day18" class = "days">18</td>
-                                <td id = "day19" class = "days">19</td>
-                                <td id = "day20" class = "days">20</td>
-                            </tr>
-                            <tr>
-                                <td id = "day21" class = "days">21</td>
-                                <td id = "day22" class = "days">22</td>
-                                <td id = "day23" class = "days">23</td>
-                                <td id = "day24" class = "days">24</td>
-                                <td id = "day25" class = "days">25</td>
-                                <td id = "day26" class = "days">26</td>
-                                <td id = "day27" class = "days">27</td>
-                            </tr>
-                            <tr>
-                                <td id = "day28" class = "days">28</td>
-                                <td id = "day29" class = "days">29</td> 
-                                <td id = "day30" class = "days">30</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>  
-                    </div>
-        <!--Task adder-->
-            <section>
-                <!--add-task form-->
+            <!---- Rylee's task bar modal section --->
+            <section id="taskBarModal" class="level">
                 <div>
-                    <form>
-                        <div>
-                            <h3>Day For Selected Task</h3>
-                        </div>
-                        <div>
-                            <button type="submit" onclick="my.Function()">Add Task</button>
-                        </div>
-                    </form>
+                <div id="modalDescription">New Task:</div>
+                <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
+                <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
+                <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
                 </div>
-                <!--task description editor-->
-                <div>
-                    <form>
-                        <label for="task-edit"></label>
-                        <input class="form-input" type="text" placeholder="Task Description" name:"task-edit" id="task-edit"/>
-                        <ul>
-                            <button type="submit" onclick="my.Function()">Edit</button> 
-                            <button type="submit" onclick="my.Function()">Done</button>
-                        </ul>
-                    </form>
-                </div>
-                <!--Holiday Announcement-->
-                <div>
-                    <h3>Holiday Announcement</h3>
-                </div>
-                <!--HTML needed to make announcement block-->
-                <div></div>
             </section>
-    </main>
 
+            <!--- Rylee's Task section --->
+            <section id="taskBarSection" class="level">
+                <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
+
+                    <div id="daySelected" class="p-1 m-1 b-1">Current Day</div>
+                    <button class="button is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+                </div>
+                <div id="taskBarBodySection"></div>
+            </section>
+            <!--- End of Rylee's Task section --->
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/utc.min.js" integrity="sha512-TU4ndEYOqql+pMXn14M8RDWsjjD+VPUA2RoWSuuFd+blPJW4oLrL1w1zAGdlrk4jsE2FEBH5CU3+fmogVYEqIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/timezone.min.js" integrity="sha512-72V2JNSAxd3rsQIpDSAbCTQXD6gi91Cd/IFZ6NYwRjZSiIlIJfDrJLXq+UomWstOg+zGHWFfkTDl3APEUMoqlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/script.js"></script>
 <script src="./assets/js/holidaylistmaybe.js"></script>
 </body>

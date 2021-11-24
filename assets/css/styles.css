@@ -1,5 +1,95 @@
+/*! @import */
 @tailwind base;
-
 @tailwind components;
 
 @tailwind utilities;
+
+#calendarDiv {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 500px;
+    width: 400px
+    padding: 1px;
+    background-color: clear;
+}
+
+.day {
+    border: 1px solid grey;
+    font: strong;
+
+}
+
+/*---------Rylee's css section --------*/
+#taskBarModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 20%;
+    top: 25%;
+    border-radius: 4px;
+    background-color: lightgray;
+    color: black;
+    height: 50%;
+    width: 60%;
+    align-items: center;
+}
+
+#modalDescription {
+    font-size: 30px;
+    font-weight: 400;
+    color: darkblue;
+    padding: 10px;
+    margin: 10px 10% 10px 10%;
+}
+
+textarea {
+    width: 80%;
+    height: 50%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    padding: 20px;
+    margin: 10px 10% 10px 10%;
+}
+
+#saveNewTaskBtn {
+    margin: 10px 10px 10px 10%;
+}
+
+#exitTaskBtn {
+    margin: 10px;
+}
+
+.newTask {
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.selectStatus{
+    border: 1px solid black;
+    width: 110px;
+    height: auto;
+    font-size: 16px;
+}
+
+/*---------Rylee's css section --------*/
+
+/*----Safia css----*/
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

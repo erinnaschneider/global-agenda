@@ -22,37 +22,47 @@
 // }
 
 //show and hide dropdown list items on button click
-function show_hide() {
-    var click = document.getElementById("drop-down content");
-    if(click.style.display ==="none") {
-        click.style.display ="block";
-    }else {
-        click.style.display ="none";
-    }
-}
-//https request for holidays on 11/25/2021 from Abstract API
-  var day1 = document.getElementById("day25");
-  var getHolidayNameus = function() {
-  fetch ("https://holidays.abstractapi.com/v1/?api_key=e2012bd7586b4502b4d64c61f9a7eed8&country=US&year=2021&month=11&day=25")
-  .then (function (response){
-  return response.json();
-  })
-  .then(function (data) {
-      console.log(data);
-//populate data!!!
-//1. create html element
-for (var i=0; i<data.length; i++){
-    var day1El = document.createElement("p");
-    // 2.  give it content
-    day1El.textContent = data[i].name
-    day1El.setAttribute("class", "dayElements");
-    // 3. append to page
-    day1.appendChild(day1El);
+// function show_hide() {
+//     var click = document.getElementById("drop-down content");
+//     if(click.style.display ==="none") {
+//         click.style.display ="block";
+//     }else {
+//         click.style.display ="none";
+//     }
+// }
 
-}})}
+//Fetching US Holiday Names for 11/25/2021 from Abstract API
+//   var day24 = document.getElementById("calendarDiv");
+//   var getHolidayNameus = function() {
+//   fetch ("https://holidays.abstractapi.com/v1/?api_key=e2012bd7586b4502b4d64c61f9a7eed8&country=US&year=2021&month=11&day=25")
+//   .then (function (response){
+//   return response.json();
+//   })
+//   .then(function (data) {
+//       console.log(data);
+// //populate data!!!
+// //1. create html element
+// for (var i=0; i<data.length; i++){
+//     var day1El = document.createElement("p-2");
+//     // 2.  give it content
+//     day1El.textContent = data[i].name
+//     day1El.setAttribute("class", "dayElements");
+//     // 3. append to page
+//     day1.appendChild(day1El);
+// }
+// })}
 
-getHolidayNameus ();
+// getHolidayNameus ();
 
 
 
 
+// const abstract_url = 'https://holidays.abstractapi.com/v1/?api_key=e2012bd7586b4502b4d64c61f9a7eed8&country=US&year=2021&month=11&day=25' 
+// async function getUSHoliday() {
+//     const response = await fetch (abstract_url);
+//     const data = await response.json();
+//     console.log(data);
+
+
+
+// getUSHoliday();
