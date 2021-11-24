@@ -9,14 +9,17 @@
     grid-template-rows: repeat(5, 1fr);
     height: 500px;
     width: 100%;
-    padding: 1px;
-    background-color: clear;
+    padding: 5px;
     border-bottom: 1px solid grey;
 }
 
 .day {
-    border: clear;
-    font-weight: strong;
+    margin: 1px;
+    padding: 4px;
+    background-color: white;
+    border-radius: 3px;
+    border: ;
+    box-shadow: inset 0px 0px 3px lightslategrey;
 }
 
 /*---------Rylee's css section --------*/
@@ -87,6 +90,7 @@ textarea {
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-color: lightgrey;
+    text-shadow:0px 0px 2px lightgrey;
 }
 
 html {
