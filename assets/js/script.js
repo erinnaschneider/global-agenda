@@ -127,8 +127,10 @@ var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
 var tasksBodySection = document.querySelector('#taskBarBodySection');
 var currentDaySelected = document.querySelector('#daySelected');
+var calendarMonthTitle = document.getElementById('month');
 
-currentDaySelected.innerHTML = "Task for November " + dayjs().format('D');
+calendarMonthTitle.innerHTML = dayjs().format('MMMM YYYY'); //set calendar month for current month
+currentDaySelected.innerHTML = "Task for " + dayjs().format('MMM') + ' ' + dayjs().format('D');//set task header to current day
 currentDaySelected.setAttribute('value', dayjs().format('D'));
 
 //open modal on click
@@ -197,6 +199,7 @@ function appendTask (ID, description, status) {
   iconTrash.classList = 'fa fa-trash'; //add class to icon element
   newDeleteBtn.append(iconTrash);
 
+
   //create new status button
   var statusSelectorBtn = document.createElement('select');
   statusSelectorBtn.classList = 'selectStatus button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace'; //add classes to complete button
@@ -232,15 +235,15 @@ var saveTasks = function(){
 //load tasks saved from local storage
 var loadTasks = function(){
   var calendar = localStorage.getItem('Calendar');
-  if(calendar == null){
+  if(calendar == null){ //if null than have local storage copy current calendar array
     calendar = calendarArray;
   }
-  if(calendar != null){
+  if(calendar != null){ //if not null update calendararray to match local storage array
     calendar = JSON.parse(calendar);
     calendarArray = calendar;
 
     for(var i=0; i<calendarArray.length; i++){
-
+      //display the current day tasks
       if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
 
         for(var j=0; j<calendarArray[i].task.length; j++){
@@ -254,32 +257,34 @@ var loadTasks = function(){
   }
 }
 
+//add eventlistener to the calendar
 var calendarDivElm = document.querySelector('#calendarDiv');
 calendarDivElm.addEventListener("click", changeDaySelected);
 
+//when day is selected
 function changeDaySelected (event){
   while (tasksBodySection.firstChild) {
-    tasksBodySection.removeChild(tasksBodySection.firstChild);
+    tasksBodySection.removeChild(tasksBodySection.firstChild); //remove all divs currently on display
   }
   
-  var newDay = event.target.innerText;
-  currentDaySelected.innerHTML = "Task for November " + newDay;
-  currentDaySelected.setAttribute('value', newDay);
+  var newDay = event.target.getAttribute('value'); //get day selected value attribute
+  currentDaySelected.innerHTML = "Task for November " + newDay; //update the task header day
+  currentDaySelected.setAttribute('value', newDay); 
 
   for(var i=0; i<calendarArray.length; i++){
 
     if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
 
-      for(var j=0; j<calendarArray[i].task.length; j++){
+      for(var j=0; j<calendarArray[i].task.length; j++){ //retreive all the task  in local storage for selected day
         var Id = calendarArray[i].task[j].ID;
         var descrip = calendarArray[i].task[j].description;
         var stat = calendarArray[i].task[j].status;
-        appendTask(Id,descrip,stat);
+        appendTask(Id,descrip,stat); //send to appendTask funtion to make divs
       }
     }
   }
 
-  saveTasks();
+  saveTasks(); //update local storage
   
 };
 
@@ -301,6 +306,7 @@ function taskButtonHandler (event){
     }
 };
 
+//color code the task by status selected
 function taskStatus(taskId, optionsValue){
     var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
 
@@ -352,3 +358,4 @@ function deleteTask(taskId){
 }
 
 //// ------------- End of Rylee's javascript ------------------ ///
+
