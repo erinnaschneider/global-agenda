@@ -30,7 +30,7 @@
     border-radius: 4px;
     background-color: lightgray;
     color: black;
-    height: 50%;
+    height: auto;
     width: 60%;
     align-items: center;
 }
