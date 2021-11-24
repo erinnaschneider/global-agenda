@@ -65,37 +65,34 @@
                 <!--Calendar header-->
                 <div class="container is-mobile level b-1 m-1 p-3">
                     <div class="container columns is-vcentered is-mobile">
-                        
-                            <div class="column is-mobile is-vcentered">Previous Month</div>
-                            <div class="column is-mobile is-vcentered">Current Month</div>
-                            <div class="column is mobile is-vcentered">Next Month</div>
-                            <div class="column is mobile is-vcentered">Year</div>
-                           
+                            <div class="column is-mobile is-vcentered">November 2021</div> <!-- Import calendar month -->
                     </div>
-
                 </div>
+
                 <!--Calendar table-->
-                <div id="calendarDiv" class="p-2">
-                   
-                    </div>
+                <div id="calendarDiv" class="p-2"></div>
+
+
             <!---- Rylee's task bar modal section --->
-            <section id="taskBarModal" class="level">
-                <div>
+            <section id="taskBarModal">
                 <div id="modalDescription">New Task:</div>
                 <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Write a task .."></textarea>
                 <button class="button is-link" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
                 <button class="button is-link" id="exitTaskBtn"><i class="fa fa-close"></i></button>
-                </div>
             </section>
 
             <!--- Rylee's Task section --->
             <section id="taskBarSection" class="level">
                 <div id="taskBarHeaderSection"> <!-- day selected and button need to be next to in a row -->
-
-                    <div id="daySelected" class="p-1 m-1 b-1">Current Day</div>
-                    <button class="button is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+                    <div id='weatherSection'>
+                        <h1>Today's Weather in Your Area</h1>
+                    </div>
                 </div>
-                <div id="taskBarBodySection"></div>
+                <div style="min-width: 70%;">
+                    <div id="daySelected" class="p-1 m-1 b-1" value='23'></div>
+                    <button class="button is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
+                    <div id="taskBarBodySection"></div>
+                </div>
             </section>
             <!--- End of Rylee's Task section --->
     </main>
