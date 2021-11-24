@@ -19,7 +19,7 @@
   
  To see the current weather, click on today's date and look on the bottom left of the screen.</p>
  
- <img src="assets\image\global-agend-screencapture.png" alt="Deployed Application" width="500" height="600">
+ <img src="assets\image\global-agend-screencapture.png" alt="Deployed Application">
  
  ## Credits:
   <p>Collaborators:
