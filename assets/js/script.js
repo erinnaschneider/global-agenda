@@ -268,7 +268,7 @@ function changeDaySelected (event){
   }
   
   var newDay = event.target.getAttribute('value'); //get day selected value attribute
-  currentDaySelected.innerHTML = "Task for November " + newDay; //update the task header day
+  currentDaySelected.innerHTML = "Task for " + dayjs().format('MMM') + newDay; //update the task header day
   currentDaySelected.setAttribute('value', newDay); 
 
   for(var i=0; i<calendarArray.length; i++){
