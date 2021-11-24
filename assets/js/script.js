@@ -111,10 +111,10 @@ for (let day = 1; day <= 31; day++) {
         name = `<div class="name">${dayName}</div>`
         console.log(date.getDay());
     }
-
+    
     let weekend = theWeekend(day)
-
-    calendar.insertAdjacentHTML("beforeend",`<div class="day ${weekend ? "weekend" : ""}">${name}${day}</div>`);
+    
+    calendar.insertAdjacentHTML("beforeend",`<div value=${day} class="day${weekend ? "weekend" : ""}">${name}${day}</div>`);
 };
 
 //// ------------- Rylee's javascript ------------------ ///
