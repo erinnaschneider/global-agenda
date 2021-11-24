@@ -5,11 +5,17 @@
 
 ## DESCRIPTION:
 <p>The calendar is for one month, set for our current month, with current days weather and current days task displayed on page load.
+   
    The user has the ability to add/delete/update task status
+   
    The user has the ability to select different days of the month and have their task displayed for that day
+   
    All tasks are saved into the local storage so they can refresh the page without losing their task
+   
    The current weather is displayed for the users login location along with user location/date/humidity/windspeed for their current day
+   
    The user can select news from a global source and have it load up on the webpage
+   
    The user can select country from "country" drop-down menu and call for the current holiday from that culture </p>
   
 ## USAGE:
