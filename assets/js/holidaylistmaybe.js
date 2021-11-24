@@ -66,3 +66,14 @@
 
 
 // getUSHoliday();
+
+
+// const abstract_url = 'https://holidays.abstractapi.com/v1/?api_key=e2012bd7586b4502b4d64c61f9a7eed8&country=US&year=2021&month=11&day=25' 
+// async function getUSHoliday() {
+// const response = await fetch (abstract_url);
+// const data = await response.json();
+// console.log(data);
+// }
+// getUSHoliday();
+
+// getUSHoliday.appendChild('#p-2'); 
