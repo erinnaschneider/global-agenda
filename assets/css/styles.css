@@ -21,6 +21,10 @@
 }
 
 /*---------Rylee's css section --------*/
+.day:hover{
+    background-color: mediumaquamarine;
+}
+
 #taskBarModal {
     display: none;
     position: fixed;
@@ -76,7 +80,7 @@ textarea {
     font-size: 16px;
 }
 
-/*---------Rylee's css section --------*/
+/*---------Rylee's css section End --------*/
 
 /*----Safia css----*/
 html {
