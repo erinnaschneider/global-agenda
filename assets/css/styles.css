@@ -17,12 +17,12 @@
 .day {
     border: 1px solid grey;
     font: strong;
-
 }
 
 /*---------Rylee's css section --------*/
 .day:hover{
     background-color: mediumaquamarine;
+    cursor: pointer;
 }
 
 #taskBarModal {
