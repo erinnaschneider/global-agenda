@@ -9,7 +9,7 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
     height: 500px;
-    width: 400px
+    width: 100%;
     padding: 1px;
     background-color: clear;
 }
