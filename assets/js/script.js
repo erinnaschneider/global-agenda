@@ -18,6 +18,9 @@ return data.json()
 };
 
 function renderCurrentWeather(city, weather){
+
+  var currentWeather = document.querySelector('#weatherSection');
+
   let temperature = weather.weather.tp;
   let humidity = weather.weather.hu;
   let windSpeed = weather.weather.ws;
@@ -25,23 +28,23 @@ function renderCurrentWeather(city, weather){
   let title = document.createElement("h2");
   //city date
   title.innerHTML = city + ", " + today.toLocaleDateString("en-US") + `<img src="https://airvisual.com/images/${icon}.png" width="4%">`;
-  currentDaySelected.appendChild(title);
+  currentWeather.appendChild(title);
   
 
   // add temp
   let temp = document.createElement("p");
   temp.innerHTML = "Temperature: " + + Math.round(temperature * 1.8 + 32) + "\u00B0 F"
-  currentDaySelected.appendChild(temp);
+  currentWeather.appendChild(temp);
 
   //add humidity
   let humid = document.createElement("p");
   humid.innerHTML = "Humidity: " + humidity + "%";
-  currentDaySelected.appendChild(humid);
+  currentWeather.appendChild(humid);
 
   //add wind speed
   let wSpeed = document.createElement("p");
   wSpeed.innerHTML = "Wind speed: " + windSpeed + " mph";
-  currentDaySelected.appendChild(wSpeed);
+  currentWeather.appendChild(wSpeed);
 
 };
 
@@ -95,7 +98,6 @@ for (let day = 1; day <= 31; day++) {
     date: day,
     task: [],
     holiday: [],
-    weather: [],
   };
   calendarArray.push(calendarDay); // add those to the calendar array
   //Rylee's code ------ End -----
@@ -117,31 +119,6 @@ for (let day = 1; day <= 31; day++) {
 
 //// ------------- Rylee's javascript ------------------ ///
 
-// load task from local storage function()
-function loadTaskFromStorage(){
-  var calendarFromStorage = JSON.parse(localStorage.getItem('calendarDay')); //uploads local storage calendat
-  if(calendarFromStorage == null){ // if it returns none
-    localStorage.setItem('calendarDay', JSON.stringify(calendarArray)); //sets local storage to calendar made
-  }
-  else{ // if it's not empty
-    calendarArray = []; //remove objects stored in calendar when calendar was made
-    calendarArray.push(calendarFromStorage); //upload the array with local storage array
-  }
-}
-
-loadTaskFromStorage();
-  // if task from local storage isn't empty then append into calendar array
-
-// add eventlistener to calendar div
-  //get the calendar day selected
-  //display the calendar day in daySelected div and update value
-
-  //search through array until date == date:day
-  // if match display all the task saved in that section
-    // create divs and display in that section
-  // if holiday isn't empty display holiday
-  // if weather isn't empty display weather
-
 //get modal
 var modal = document.getElementById('taskBarModal');
 var openModalBtn = document.getElementById('addTaskBtn');
@@ -150,6 +127,9 @@ var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
 var tasksBodySection = document.querySelector('#taskBarBodySection');
 var currentDaySelected = document.querySelector('#daySelected');
+
+currentDaySelected.innerHTML = "Task for November " + dayjs().format('D');
+currentDaySelected.setAttribute('value', dayjs().format('D'));
 
 //open modal on click
 openModalBtn.onclick = function(){
@@ -163,64 +143,147 @@ closeModalBtn.onclick = function(){
 
 //save task description into div section and display
 var taskIdCounter = 0;
+
 saveTaskBtn.onclick = function(){
+  createNewTask(taskIdCounter, taskText.value, "To-Do");
+  //close modal window
+  modal.style.display = "none";
+  //clear textarea 
+  taskText.value = "";
+}
 
-    //create new task div element
-    var newDivElement = document.createElement('div');
-    newDivElement.classList = "newTask";//add class to div
-    newDivElement.setAttribute("data-taskId", taskIdCounter);//add unique task id
-    
-
-    //create new p element
-    var newPElement = document.createElement('p');
-    newPElement.innerHTML = taskText.value;
-   
-    //create new delete button
-    var newDeleteBtn = document.createElement('button');
-    newDeleteBtn.classList = 'deleteBtn'; //add classes too delete button
-    newDeleteBtn.setAttribute("data-taskId", taskIdCounter); //add id counter
-    var iconTrash = document.createElement('i'); //create trash icon element
-    iconTrash.classList = 'fa fa-trash'; //add class to icon element
-    newDeleteBtn.append(iconTrash);
-
-    //create new complete button
-    var newCompleteBtn = document.createElement('select');
-    newCompleteBtn.classList = 'selectStatus'; //add classes to complete button
-    newCompleteBtn.setAttribute('name','statusChange');
-    newCompleteBtn.setAttribute("data-taskId", taskIdCounter);
-    
-    var statusChoices = ['To Do', 'In Progess', 'Completed'];
-    for(var i=0; i<statusChoices.length; i++){
-        var optionsElement = document.createElement('option');
-        optionsElement.textContent = statusChoices[i];
-        optionsElement.setAttribute('value', statusChoices[i]);
-
-        newCompleteBtn.appendChild(optionsElement);
-    }
-
-    //append to new div element
-    newDivElement.append(newPElement);
-    newDivElement.append(newDeleteBtn);
-    newDivElement.append(newCompleteBtn);
-    //append to task body section
-    tasksBodySection.append(newDivElement);
+//create a new task from user input
+function createNewTask(ID, description, status){
+    var newTask = {
+      ID: ID,
+      description: description,
+      status: status,
+    };
   
+    appendTask(ID, description,status);
+
     //store new task into the array for the specific date in task section
     for(i=0; i<calendarArray.length; i++){
+
       if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
-        calendarArray[i].task.push(newDivElement);
+        calendarArray[i].task.push(newTask);
       }
     };
-
-    //close modal window
-    modal.style.display = "none";
-    //clear textarea 
-    taskText.value = "";
-
+    // save to local storage
+    saveTasks();
     //increate task counter for next unique id
     taskIdCounter ++;
 
 };
+
+//display task on html
+function appendTask (ID, description, status) {
+
+  //create new task div element
+  var newDivElement = document.createElement('div');
+  newDivElement.classList = "newTask";//add class to div
+  newDivElement.setAttribute("data-taskId", ID);//add unique task id
+  
+
+  //create new p element
+  var newPElement = document.createElement('p');
+  newPElement.innerHTML = description;
+ 
+  //create new delete button
+  var newDeleteBtn = document.createElement('button');
+  newDeleteBtn.classList = 'deleteBtn button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace'; //add classes too delete button
+  newDeleteBtn.setAttribute("data-taskId", ID); //add id counter
+  var iconTrash = document.createElement('i'); //create trash icon element
+  iconTrash.classList = 'fa fa-trash'; //add class to icon element
+  newDeleteBtn.append(iconTrash);
+
+  //create new status button
+  var statusSelectorBtn = document.createElement('select');
+  statusSelectorBtn.classList = 'selectStatus button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace'; //add classes to complete button
+  statusSelectorBtn.setAttribute('name','statusChange'); //create name and status
+  statusSelectorBtn.setAttribute("data-taskId", ID); //set task Id
+  
+  var statusChoices = ['To Do', 'In Progess', 'Completed']; //create the drop down with 3  status options
+  for(var i=0; i<statusChoices.length; i++){
+      var optionsElement = document.createElement('option');
+      optionsElement.textContent = statusChoices[i];
+      optionsElement.setAttribute('value', statusChoices[i]);
+
+      statusSelectorBtn.appendChild(optionsElement);
+  }
+
+  //append to new div element
+  newDivElement.append(newPElement);
+  newDivElement.append(newDeleteBtn);
+  newDivElement.append(statusSelectorBtn);
+  //append to task body section
+  tasksBodySection.append(newDivElement);
+
+  //update taskStatus for this specific task
+  taskStatus(ID, status);
+
+};
+
+//save array to local storage
+var saveTasks = function(){
+  localStorage.setItem('Calendar', JSON.stringify(calendarArray));
+}
+
+//load tasks saved from local storage
+var loadTasks = function(){
+  var calendar = localStorage.getItem('Calendar');
+  if(calendar == null){
+    calendar = calendarArray;
+  }
+  if(calendar != null){
+    calendar = JSON.parse(calendar);
+    calendarArray = calendar;
+
+    for(var i=0; i<calendarArray.length; i++){
+
+      if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
+
+        for(var j=0; j<calendarArray[i].task.length; j++){
+          var Id = calendarArray[i].task[j].ID;
+          var descrip = calendarArray[i].task[j].description;
+          var stat = calendarArray[i].task[j].status;
+          appendTask(Id,descrip,stat);
+        }
+      }
+    }
+  }
+}
+
+var calendarDivElm = document.querySelector('#calendarDiv');
+calendarDivElm.addEventListener("click", changeDaySelected);
+
+function changeDaySelected (event){
+  while (tasksBodySection.firstChild) {
+    tasksBodySection.removeChild(tasksBodySection.firstChild);
+  }
+  
+  var newDay = event.target.innerText;
+  currentDaySelected.innerHTML = "Task for November " + newDay;
+  currentDaySelected.setAttribute('value', newDay);
+
+  for(var i=0; i<calendarArray.length; i++){
+
+    if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
+
+      for(var j=0; j<calendarArray[i].task.length; j++){
+        var Id = calendarArray[i].task[j].ID;
+        var descrip = calendarArray[i].task[j].description;
+        var stat = calendarArray[i].task[j].status;
+        appendTask(Id,descrip,stat);
+      }
+    }
+  }
+
+  saveTasks();
+  
+};
+
+loadTasks();
 
 // add eventlistener to parent task body section incase tasks weren't created yet
 var taskBodyListener = document.querySelector('#taskBarBodySection');
@@ -230,30 +293,62 @@ taskBodyListener.addEventListener("click", taskButtonHandler);
 function taskButtonHandler (event){
     var taskId = event.target.getAttribute('data-taskId'); //get elements task id
     if(event.target.matches('.deleteBtn')){
-        deleteTask(taskId);//send to delete function
+      deleteTask(taskId);//send to delete function
     }
     if(event.target.matches('.selectStatus')){
-        var optionsValue = event.target.value;
-        taskStatus(taskId, optionsValue);//send to delete function
+      var optionsValue = event.target.value;
+      taskStatus(taskId, optionsValue);//send to delete function
     }
 };
 
 function taskStatus(taskId, optionsValue){
     var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
+
     if(optionsValue == 'To Do'){
         taskSeleted.setAttribute('style','background-color: lightgrey');
     }
     if(optionsValue == 'In Progess'){
-        taskSeleted.setAttribute('style','background-color: lightyellow');
+        taskSeleted.setAttribute('style','background-color: lightblue');
     }
     if(optionsValue == 'Completed'){
         taskSeleted.setAttribute('style','background-color: lightgreen');
     }
+
+    //update task status in calendar array
+    for(i=0; i<calendarArray.length; i++){
+
+      if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
+        for(var j=0; j<calendarArray[i].task.length; j++){
+          if(calendarArray[i].task[j].ID == parseInt(taskId)){
+            calendarArray[i].task[j].status = optionsValue;
+
+          }
+        }
+      }
+    };
+    // save to local storage
+    saveTasks();
 }
 
 //delete task with matched id
 function deleteTask(taskId){
-    var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
-    taskSeleted.remove();
+  var taskSeleted = document.querySelector(".newTask[data-taskId='" + taskId + "']");
+  taskSeleted.remove(); //remove specific task from html
+
+  var updatedTaskArray = [];
+  for(i=0; i<calendarArray.length; i++){
+    if(calendarArray[i].date == currentDaySelected.getAttribute('value')){
+      
+      for(var j=0; j<calendarArray[i].task.length; j++){
+        if(calendarArray[i].task[j].ID !== parseInt(taskId)){
+          updatedTaskArray.push(calendarArray[i].task[j]);
+        }
+      }
+      calendarArray[i].task = updatedTaskArray;
+    };
+  };
+  // save to local storage
+  saveTasks();
 }
+
 //// ------------- End of Rylee's javascript ------------------ ///
