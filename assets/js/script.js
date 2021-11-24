@@ -1,6 +1,8 @@
 // Get all dropdowns on the page that aren't hoverable.
-const dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
+let dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
 let apiKey = "425bdf6a-8b68-43b2-a67b-5c2fbbd0986d";
+let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+let today  = new Date();
 
 
 // fetching weather based on ip address
@@ -10,21 +12,39 @@ return data.json()
   }).then(function(res){
     var data = res.data;
 //console.log(res)
-  renderCurrentWeather(data.city, data.current.weather)
+  renderCurrentWeather(data.city, data.current)
   })
   
 };
 
 function renderCurrentWeather(city, weather){
-  //var date = dayjs().tz(timezone).format('M/D/YYYY');
-  let temperature = weather.tp;
-  let humidity = weather.hu;
-  let windSpeed = weather.ws;
-  let icon = weather.ic;
-  //city date/temp/humid/windspeed/uv
-  console.log(weather);
+  let temperature = weather.weather.tp;
+  let humidity = weather.weather.hu;
+  let windSpeed = weather.weather.ws;
+  let icon = weather.weather.ic;
+  let title = document.createElement("h2");
+  //city date
+  title.innerHTML = city + ", " + today.toLocaleDateString("en-US") + `<img src="https://airvisual.com/images/${icon}.png" width="4%">`;
+  currentDaySelected.appendChild(title);
+  
+
+  // add temp
+  let temp = document.createElement("p");
+  temp.innerHTML = "Temperature: " + + Math.round(temperature * 1.8 + 32) + "\u00B0 F"
+  currentDaySelected.appendChild(temp);
+
+  //add humidity
+  let humid = document.createElement("p");
+  humid.innerHTML = "Humidity: " + humidity + "%";
+  currentDaySelected.appendChild(humid);
+
+  //add wind speed
+  let wSpeed = document.createElement("p");
+  wSpeed.innerHTML = "Wind speed: " + windSpeed + " mph";
+  currentDaySelected.appendChild(wSpeed);
 
 };
+
 
 getWeatherData();
 
