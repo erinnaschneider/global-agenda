@@ -32,7 +32,7 @@
   straore98 https://github.com/straore98
   Jyg92 https://github.com/Jyg92
   
-  Third-party assets: Bulma CSS Framework (https://bulma.io/expo/); A Calendar API via mediastack (https://bulma.io/expo/); A global news API via TheNewsAPI (https://www.thenewsapi.com/); a Weather API via AirVisual API (https://www.iqair.com/us/air-pollution-data-api)</p>
+  Third-party assets: Bulma CSS Framework (https://bulma.io/expo/); A global news API via Mediastack (https://mediastack.com/); a Weather API via AirVisual API (https://www.iqair.com/us/air-pollution-data-api)</p>
   
 ## License:
   MIT License
