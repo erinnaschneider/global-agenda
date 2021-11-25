@@ -126,6 +126,7 @@ var openModalBtn = document.getElementById('addTaskBtn');
 var closeModalBtn = document.getElementById('exitTaskBtn');
 var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
+var taskBarHeaderSection = document.querySelector('#taskBarHeaderSection');
 var tasksBodySection = document.querySelector('#taskBarBodySection');
 var currentDaySelected = document.querySelector('#daySelected');
 var calendarMonthTitle = document.getElementById('month');
@@ -358,5 +359,62 @@ function deleteTask(taskId){
   saveTasks();
 }
 
-//// ------------- End of Rylee's javascript ------------------ ///
 
+// News API
+ var newsAPIKey = 'd4e9b8f967f38b273657e81fac8d2bd9';
+
+ var newsCall = function(){
+   var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=' + newsAPIKey + '&sources=us&date=2021-11-24&sources=en&limit=1';
+   console.log(newsApiUrl);
+   fetch(newsApiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function (data) {
+          newsAppend(data.data[0].title,data.data[0].description,data.data[0].url);
+        });
+      } 
+    })
+  };
+
+ newsCall();
+
+ function newsAppend(title, description, url){
+   //create new news article div element
+  var newsSectionElement = document.createElement('div');
+  newsSectionElement.classList = "is mobile";
+  newsSectionElement.setAttribute("id", 'newsSection');
+
+  //create h1 title 
+  var newsSectionTitle = document.createElement('h1');
+  newsSectionTitle.classList = 'subtitle is-mobile';
+  newsSectionTitle.innerHTML = "Today's Current News";
+  newsSectionElement.append(newsSectionTitle);
+
+  //create new article div
+  var articleElement = document.createElement('div');
+
+  //create articleTitle p
+  var articleTitle = document.createElement('p');
+  articleTitle.innerHTML = 'Article Title: ' + title;
+  articleElement.append(articleTitle);
+
+  //create articleDescription p
+  var articleDescription = document.createElement('p');
+  articleDescription.innerHTML = 'Article Title: ' + description;
+  articleElement.append(articleDescription);
+
+  //create url <a>
+  var articleLink = document.createElement('a');
+  articleLink.setAttribute("href", url);
+  articleLink.classList = "deleteBtn button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace";
+  articleLink.innerHTML = "Read News Article";
+  articleElement.append(articleLink);
+
+  newsSectionElement.append(articleElement);
+  taskBarHeaderSection.append(newsSectionElement);
+
+ }
+
+
+//// ------------- End of Rylee's javascript ------------------ ///
