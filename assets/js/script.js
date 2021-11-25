@@ -1,7 +1,6 @@
 // Get all dropdowns on the page that aren't hoverable.
 let dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
-let apiKey = "153954f0-1387-41fa-b5cd-0f224e0e5da0"
-";
+let apiKey = "f94651eb-ccc8-4463-945f-2ba89fcc0c79";
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 let today  = new Date();
 
