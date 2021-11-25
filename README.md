@@ -14,18 +14,16 @@
    
    The current weather is displayed for the users login location along with user location/date/humidity/windspeed for their current day
    
-   The user can select news from a global source and have it load up on the webpage
-   
-   The user can select country from "country" drop-down menu and call for the current holiday from that culture </p>
+   The user can select news from the available countries and have it load up on the webpage
   
 ## USAGE:
 <p>Go to https://erinnaschneider.github.io/global-agenda/ and select a date. After date is selected you may add a task by clicking the task button. Enter the task into the modal and click the save icon. As you progress through your task, click the icons for "in progress" within the "to do" button and when you have completed your task, click the icon for "completed". After task completion, delete that task from by clicking the "trash" icon.
  
- To see the global daily news, click on the desrired culture and it will appear on the screen.
+ To see the global daily news, click on the desired culture and it will appear on bottom left of the screen.
   
- To see the current weather, click on today's date and look on the bottom left of the screen.</p>
+ To see the current weather, look on the bottom left of the screen.</p>
  
- <img src="assets\image\global-agend-screencapture.png" alt="Deployed Application">
+ <img src="assets\image\updated-global-agenda-screencapture.png" alt="Deployed Application">
  
  ## Credits:
   <p>Collaborators:
@@ -34,7 +32,7 @@
   straore98 https://github.com/straore98
   Jyg92 https://github.com/Jyg92
   
-  Third-party assets: Bulma CSS Framework (https://bulma.io/expo/); A Calendar API via mediastack (https://bulma.io/expo/); A global news API via TheNewsAPI (https://www.thenewsapi.com/) ; A Holiday API via Abstractapi (https://www.abstractapi.com/); a Weather API via AirVisual API (https://www.iqair.com/us/air-pollution-data-api)</p>
+  Third-party assets: Bulma CSS Framework (https://bulma.io/expo/); A Calendar API via mediastack (https://bulma.io/expo/); A global news API via TheNewsAPI (https://www.thenewsapi.com/); a Weather API via AirVisual API (https://www.iqair.com/us/air-pollution-data-api)</p>
   
 ## License:
   MIT License
