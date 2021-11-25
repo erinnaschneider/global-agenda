@@ -360,7 +360,7 @@ function deleteTask(taskId){
 
 
 // News API
- var newsAPIKey = '0900507225f199f888ac631aab4e6f4f';
+ var newsAPIKey = 'd4e9b8f967f38b273657e81fac8d2bd9';
 
  var newsCall = function(){
    var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=' + newsAPIKey + '&sources=us&date=2021-11-24&sources=en&limit=1';
