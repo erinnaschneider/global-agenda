@@ -3,7 +3,8 @@ let dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
 let apiKey = "f94651eb-ccc8-4463-945f-2ba89fcc0c79";
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 let today  = new Date();
-
+// this gets the current month days
+let currentMonthDays = dayjs().daysInMonth();
 
 // fetching weather based on ip address
 function getWeatherData(){
@@ -93,7 +94,7 @@ let theWeekend = day => {
 
 
 
-for (let day = 1; day <= 31; day++) {
+for (let day = 1; day <= currentMonthDays; day++) {
   
   //Rylee's code ------ add days to calendarArray[]-----
   var calendarDay = { //add all items that will be stored to local storage for each day
