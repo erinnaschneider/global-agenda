@@ -21,14 +21,14 @@
                 </a>
             </div>
             <div class="is-mobile">
-                <h1 class="is-size-1 is-mobile is-justify-content-center p-1">Global Agenda</h1>
+                <h1 class=" title is-1 is-mobile is-justify-content-center p-1">Global Agenda</h1>
             </div>
             <!--Goal is to have holiday API propogate the corresponding holiday when country from dropdown menu clicked-->
         
             <div class="dropdown p-1 m-1 is-mobile">
                 <div class="dropdown-trigger p-1 is-mobile">
                     <button class="button is-info is-light is-medium is-active button-text-hover-background-color is-mobile is-outlined" aria-haspopup="true"
-                        aria-controls="dropdown-ui-actions" onclick="my.Function()">
+                        aria-controls="dropdown-ui-actions">
                         <span>Country</span>
                         <span class="icon is-large">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -37,19 +37,19 @@
                 </div>
                 <div class="dropdown-menu is-link is-light is-active is-mobile" id="dropdown-ui-actions" role="menu">
                     <div class="dropdown-content is-link is-mobile">
-                        <a href="#" class="dropdown-item">
+                        <a value='us' class="dropdown-item">
                             United States
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a value='mx' class="dropdown-item">
                             Mexico
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a value='ca' class="dropdown-item">
                             Canada
                         </a>
-                        <a href="#" class="dropdown-item">
-                            Singapore
+                        <a value='cn' class="dropdown-item">
+                            China
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a value='in' class="dropdown-item">
                             India
                         </a>
                     </div>
@@ -64,7 +64,7 @@
             <section class="is-mobile">
                 <!--Calendar header-->
                 <div id="month-contain" class="container is-mobile">
-                    <h2 id="month" class="is-mobile level subtitle is-size-3 is-grey p-5 m-2 is-justify-content-center">November 2021</h2>
+                    <h2 id="month" class="is-mobile level subtitle is-size-2 is-grey p-5 m-2 is-justify-content-center">November 2021</h2>
                 </div>
 
                 <!--Calendar table (partially styled with bulma and vanilla css)-->
@@ -73,7 +73,7 @@
 
             <!---- Rylee's task bar modal section --->
             <section id="taskBarModal" class="is-level is-mobile"> 
-                <div id="modalDescription" class="is-link is-mobile">New Task:</div>
+                <div id="modalDescription" class="is-link is-mobile">Task: </div>
                 <textarea id="modalTextArea" maxlength="180" wrap="hard" placeholder="Enter a task .." class="is-mobile"></textarea>
                 <button class="button is-link is-mobile" id="saveNewTaskBtn"><i class="fa fa-save"></i></button>
                 <button class="button is-link is-mobile" id="exitTaskBtn"><i class="fa fa-close"></i></button>
@@ -82,12 +82,13 @@
             <!--- Rylee's Task section --->
             <section id="taskBarSection" class="columns">
                 <div id="taskBarHeaderSection" class="column"> <!-- day selected and button need to be next to in a row -->
-                    <div id='weatherSection' class="is-mobile">
-                        <h1 class="subtitle is-mobile">Today's Weather in Your Area</h1>
+                    <div id='weatherSection' class="block is-mobile">
+                        <h1 class="title is-4 is-mobile">Today's Weather in Your Area</h1>
                     </div>
+                    <div id="newsSection"></div>
                 </div>
                 <div class= "column">
-                    <div id="daySelected" class="subtitle is-mobile is-vcentered" value='23'></div>
+                    <div id="daySelected" class="title is-4 is-mobile is-vcentered" value='23'></div>
                     <button class="button is-mobile is-link is-normal is-outlined is-focused button-text-hover-color is-fullwidth is-family-monospace" id="addTaskBtn"><i class="fa fa-plus"> Task </i></button>
                     <div id="taskBarBodySection" class="is-mobile"></div>
                 </div>
