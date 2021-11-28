@@ -4,7 +4,9 @@
 <p>As a busy student, I want a do-it-all agenda. One that allows to add and keep my tasks organized, gives me a weather update to better plan my day, and gives me daily global news to keep me up-to-date on current events.
 
 ## DESCRIPTION:
-<p>The calendar is for one month, set for our current month, with current days weather and current days task displayed on page load.
+<p>The calendar displays the current month, with current days weather and current days task displayed on page load.
+   
+   Each month the calendar will automatically change to the current month
    
    The user has the ability to add/delete/update task status
    
