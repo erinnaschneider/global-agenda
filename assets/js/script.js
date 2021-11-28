@@ -91,13 +91,14 @@ let theWeekend = day => {
     return day === 6;
 }
 
+
+
 for (let day = 1; day <= 31; day++) {
   
   //Rylee's code ------ add days to calendarArray[]-----
   var calendarDay = { //add all items that will be stored to local storage for each day
-    date: day,
+    date: ('0' + day).slice(-2),
     task: [],
-    holiday: [],
   };
   calendarArray.push(calendarDay); // add those to the calendar array
   //Rylee's code ------ End -----
@@ -114,10 +115,16 @@ for (let day = 1; day <= 31; day++) {
     
     let weekend = theWeekend(day)
     
-    calendar.insertAdjacentHTML("beforeend",`<div value=${day} class="day ${weekend ? "weekend" : ""}">${name}${day}</div>`);
+    calendar.insertAdjacentHTML("beforeend",`<div value=${('0' + day).slice(-2)} class="day ${weekend ? "weekend" : ""}">${name}${day}</div>`);
 };
 
 //// ------------- Rylee's javascript ------------------ ///
+
+//save user setting for country selected
+var userSettings = {
+  country: '', 
+};
+calendarArray.push(userSettings);
 
 //get modal
 var modal = document.getElementById('taskBarModal');
@@ -190,11 +197,12 @@ function appendTask (ID, description, status) {
 
   //create new p element
   var newPElement = document.createElement('p');
+  newPElement.classList = 'block';
   newPElement.innerHTML = description;
  
   //create new delete button
   var newDeleteBtn = document.createElement('button');
-  newDeleteBtn.classList = 'deleteBtn button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace'; //add classes too delete button
+  newDeleteBtn.classList = 'deleteBtn button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace buttonSpaceAround'; //add classes too delete button
   newDeleteBtn.setAttribute("data-taskId", ID); //add id counter
   var iconTrash = document.createElement('i'); //create trash icon element
   iconTrash.classList = 'fa fa-trash'; //add class to icon element
@@ -203,7 +211,7 @@ function appendTask (ID, description, status) {
 
   //create new status button
   var statusSelectorBtn = document.createElement('select');
-  statusSelectorBtn.classList = 'selectStatus button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace'; //add classes to complete button
+  statusSelectorBtn.classList = 'selectStatus button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace buttonSpaceAround'; //add classes to complete button
   statusSelectorBtn.setAttribute('name','statusChange'); //create name and status
   statusSelectorBtn.setAttribute("data-taskId", ID); //set task Id
   
@@ -255,6 +263,8 @@ var loadTasks = function(){
         }
       }
     }
+    //display news for country stored
+    newsCall(calendarArray[calendarArray.length - 1].country);
   }
 }
 
@@ -269,7 +279,7 @@ function changeDaySelected (event){
   }
   
   var newDay = event.target.getAttribute('value'); //get day selected value attribute
-  currentDaySelected.innerHTML = "Task for " + dayjs().format('MMM') + newDay; //update the task header day
+  currentDaySelected.innerHTML = "Task for " + dayjs().format('MMM')  + ' ' + newDay; //update the task header day
   currentDaySelected.setAttribute('value', newDay); 
 
   for(var i=0; i<calendarArray.length; i++){
@@ -358,35 +368,51 @@ function deleteTask(taskId){
   saveTasks();
 }
 
+//drop-down country menu
+var countrySelected = document.querySelector('#dropdown-ui-actions');
+countrySelected.addEventListener("click", userCountry);
 
-// News API
- var newsAPIKey = 'd4e9b8f967f38b273657e81fac8d2bd9';
+//collect the country the user selected and store it into the calendarArray as item 2
+function userCountry(event){
+  calendarArray[calendarArray.length - 1].country = event.target.getAttribute('value');
+  newsCall(calendarArray[calendarArray.length - 1].country);
 
- var newsCall = function(){
-   var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=' + newsAPIKey + '&sources=us&date=2021-11-24&sources=en&limit=1';
-   console.log(newsApiUrl);
-   fetch(newsApiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          newsAppend(data.data[0].title,data.data[0].description,data.data[0].url);
-        });
-      } 
-    })
-  };
+   // save to local storage
+   saveTasks();
+}
 
- newsCall();
+//get the news article
+function newsCall(c){
+  var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=1f54de67a5b0db8a51f44ccc800b0e40&sources='+ c +'&date=2021-11-24&sources=en&limit=1';
+  console.log(newsApiUrl);
+  fetch(newsApiUrl)
+  .then(function (response) {
+    if (response.ok) {
+      console.log(response);
+      response.json().then(function (data) {
+        newsAppend(data.data[0].title,data.data[0].description,data.data[0].url);
+      });
+    } 
+  })
+};
 
- function newsAppend(title, description, url){
+//section that will update the news article
+var weatherElement = document.querySelector('#newsSection');
+
+function newsAppend(title, description, url){
+
+  while (weatherElement.firstChild) {
+    weatherElement.removeChild(weatherElement.firstChild); //remove all divs currently on display
+  }
+
    //create new news article div element
   var newsSectionElement = document.createElement('div');
-  newsSectionElement.classList = "is mobile";
+  newsSectionElement.classList = "block is mobile";
   newsSectionElement.setAttribute("id", 'newsSection');
 
   //create h1 title 
   var newsSectionTitle = document.createElement('h1');
-  newsSectionTitle.classList = 'subtitle is-mobile';
+  newsSectionTitle.classList = 'title is-4 is-mobile';
   newsSectionTitle.innerHTML = "Today's Current News";
   newsSectionElement.append(newsSectionTitle);
 
@@ -394,26 +420,29 @@ function deleteTask(taskId){
   var articleElement = document.createElement('div');
 
   //create articleTitle p
-  var articleTitle = document.createElement('p');
-  articleTitle.innerHTML = 'Article Title: ' + title;
+  var articleTitle = document.createElement('h3');
+  articleTitle.classList= 'block subtitle';
+  articleTitle.innerHTML =  title;
   articleElement.append(articleTitle);
 
   //create articleDescription p
   var articleDescription = document.createElement('p');
-  articleDescription.innerHTML = 'Article Title: ' + description;
+  articleTitle.classList= 'block';
+  articleDescription.innerHTML = description;
   articleElement.append(articleDescription);
 
   //create url <a>
   var articleLink = document.createElement('a');
+  articleTitle.classList= 'block';
   articleLink.setAttribute("href", url);
-  articleLink.classList = "deleteBtn button is-link is-normal is-outlined is-focused button-text-hover-color is-family-monospace";
+  articleLink.classList = "button is-family-monospace";
   articleLink.innerHTML = "Read News Article";
   articleElement.append(articleLink);
 
   newsSectionElement.append(articleElement);
-  taskBarHeaderSection.append(newsSectionElement);
+  weatherElement.append(newsSectionElement);
 
- }
+};
 
 
 //// ------------- End of Rylee's javascript ------------------ ///
