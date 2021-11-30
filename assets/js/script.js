@@ -266,8 +266,9 @@ var loadTasks = function(){
         }
       }
     }
-    //display news for country stored
+    //display news and holidays for country stored
     newsCall(calendarArray[calendarArray.length - 1].country);
+    holidayCall(calendarArray[calendarArray.length - 1].country);
   }
 }
 
@@ -299,6 +300,7 @@ function changeDaySelected (event){
   }
 
   saveTasks(); //update local storage
+  holidayCall(calendarArray[calendarArray.length - 1].country); //fetch holiday api data
   
 };
 
@@ -378,7 +380,8 @@ countrySelected.addEventListener("click", userCountry);
 //collect the country the user selected and store it into the calendarArray as item 2
 function userCountry(event){
   calendarArray[calendarArray.length - 1].country = event.target.getAttribute('value');
-  newsCall(calendarArray[calendarArray.length - 1].country);
+  newsCall(calendarArray[calendarArray.length - 1].country); //fetch news api data
+  holidayCall(calendarArray[calendarArray.length - 1].country); //fetch holiday api data
 
    // save to local storage
    saveTasks();
@@ -446,5 +449,40 @@ function newsAppend(title, description, url){
   weatherElement.append(newsSectionElement);
 
 };
+
+  //https request for holidays 
+function holidayCall(c){
+  var day = currentDaySelected.getAttribute('value');
+  var holidaysAPIURL = "https://holidays.abstractapi.com/v1/?api_key=e2012bd7586b4502b4d64c61f9a7eed8&country="+ c +"&year=" + dayjs().format('YYYY') + "&month=" + dayjs().format('MM') + "&day=" + day;
+  fetch (holidaysAPIURL)
+  .then(function (response) {
+    if (response.ok) {
+      console.log(response);
+      response.json().then(function (data) {
+        console.log(data);
+        if(data.length > 0){
+          for(var i=0; i< data.length; i++){
+            appendHolidayCall(data[i].name);
+            console.log(data[i].name);
+          }
+        }
+        else{}
+      });
+  }
+  });
+}
+
+function appendHolidayCall (holiday){
+
+  var holidayElement = document.createElement('div');
+  holidayElement.classList = "newHoliday";
+
+  var holidayName = document.createElement('p');
+  holidayName.classList = "block";
+  holidayName.innerText = holiday;
+  holidayElement.append(holidayName);
+  //append to task body section
+  tasksBodySection.append(holidayElement);
+}
 
 //// ------------- End of Rylee's javascript ------------------ ///
