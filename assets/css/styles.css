@@ -69,11 +69,15 @@ textarea {
     margin: 10px;
 }
 
-.newTask {
+.newTask, .newHoliday {
     padding: 40px;
     border: 1px solid darkslategrey;
     border-radius: 4px;
     margin: 10px;
+}
+
+.newHoliday {
+    background-color: Moccasin;
 }
 
 .selectStatus{
