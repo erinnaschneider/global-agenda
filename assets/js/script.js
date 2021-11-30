@@ -131,10 +131,12 @@ calendarArray.push(userSettings);
 var modal = document.getElementById('taskBarModal');
 var openModalBtn = document.getElementById('addTaskBtn');
 var closeModalBtn = document.getElementById('exitTaskBtn');
+//task
 var saveTaskBtn = document.getElementById('saveNewTaskBtn');
 var taskText = document.querySelector('#modalTextArea');
 var taskBarHeaderSection = document.querySelector('#taskBarHeaderSection');
 var tasksBodySection = document.querySelector('#taskBarBodySection');
+//calendar
 var currentDaySelected = document.querySelector('#daySelected');
 var calendarMonthTitle = document.getElementById('month');
 
@@ -384,7 +386,7 @@ function userCountry(event){
 
 //get the news article
 function newsCall(c){
-  var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=1f54de67a5b0db8a51f44ccc800b0e40&sources='+ c +'&date=2021-11-24&sources=en&limit=1';
+  var newsApiUrl = 'https://api.mediastack.com/v1/news?access_key=1f54de67a5b0db8a51f44ccc800b0e40&countries=' + c + '&date='+ dayjs().format("YY-MM-DD");
   console.log(newsApiUrl);
   fetch(newsApiUrl)
   .then(function (response) {
@@ -444,6 +446,5 @@ function newsAppend(title, description, url){
   weatherElement.append(newsSectionElement);
 
 };
-
 
 //// ------------- End of Rylee's javascript ------------------ ///
