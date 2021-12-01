@@ -109,7 +109,7 @@ for (let day = 1; day <= currentMonthDays; day++) {
     let name = "";
 
     if (day <= 7) {
-        let dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()]
+        let dayName = ['Tue','Wed', 'Thu', 'Fri', 'Sat','Sun', 'Mon'][date.getDay()]
         name = `<div class="name">${dayName}</div>`
         console.log(date.getDay());
     }
